@@ -6,8 +6,7 @@ import java.sql.SQLException;
 
 public class MySqlConnector {
 
-    private static final String URL = "jdbc:mysql://localhost/web?useUnicode=true" +
-            "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://localhost/web";
 
     private static final String USER = "root";
     private static final String PASSWORD = "admin";

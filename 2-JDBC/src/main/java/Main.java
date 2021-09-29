@@ -25,9 +25,9 @@ public class Main {
       /*  System.out.println(" ---------- CREATE User --------------");
         userService.createUser(new User(6, "New"));*/
 
-      //  System.out.println(" ---------- CREATE Blog with User --------------");
-      //  blogService.createBlog(new Blog(7, "Window"));
-      //  blogService.getAll().forEach(System.out::println);
+
+        blogService.createBlog(new Blog(8, "Window"));
+        blogService.getAll().forEach(System.out::println);
 
 
     }
