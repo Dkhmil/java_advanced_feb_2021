@@ -21,21 +21,21 @@ public class BucketServiceImpl implements BucketService {
 
     @Override
     public Bucket read(Long id) {
-        return null;
+        return dao.read(id);
     }
 
     @Override
     public Bucket update(Bucket bucket) {
-        return null;
+        return dao.update(bucket);
     }
 
     @Override
     public void delete(Long id) {
-
+        dao.delete(id);
     }
 
     @Override
     public List<Bucket> readAll() {
-        return null;
+        return dao.readAll();
     }
 }
