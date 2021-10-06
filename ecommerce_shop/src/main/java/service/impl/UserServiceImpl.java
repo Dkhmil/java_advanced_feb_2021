@@ -16,22 +16,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
-        return null;
+        return dao.create(user);
     }
 
     @Override
     public User read(Long id) {
-        return null;
+        return dao.read(id);
     }
 
     @Override
     public User update(User bucket) {
-        return null;
+        return dao.update(bucket);
     }
 
     @Override
     public void delete(Long id) {
-
+       dao.delete(id);
     }
 
     @Override

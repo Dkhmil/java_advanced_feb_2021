@@ -48,7 +48,7 @@ public class ObjectMapper {
             return (T) instance;
 
         } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
+            //
         }
         return null;
     }
