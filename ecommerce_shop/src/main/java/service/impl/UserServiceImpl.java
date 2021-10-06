@@ -2,17 +2,16 @@ package service.impl;
 
 import dao.AbstractDao;
 import dao.GenericDao;
-import model.Bucket;
-import model.Product;
 import model.User;
 import service.UserService;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+    private final GenericDao<User, Long> dao;
 
     public UserServiceImpl() {
-        GenericDao<User, Long> dao = new AbstractDao<>(User.class);
+        dao = new AbstractDao<>(User.class);
     }
 
     @Override

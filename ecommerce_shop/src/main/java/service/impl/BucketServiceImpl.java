@@ -8,7 +8,7 @@ import service.BucketService;
 import java.util.List;
 
 public class BucketServiceImpl implements BucketService {
-    private GenericDao<Bucket, Long> dao;
+    private final GenericDao<Bucket, Long> dao;
 
     public BucketServiceImpl() {
         dao = new AbstractDao<>(Bucket.class);
