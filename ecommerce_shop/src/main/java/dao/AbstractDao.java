@@ -15,10 +15,10 @@ public class AbstractDao<T, ID> implements GenericDao<T, ID> {
     private final Map<String, String> queries;
     private final ObjectMapper mapper;
 
-    public AbstractDao(Class<?> clazz) {
+    public AbstractDao(Object o) {
         this.connection = MySQLConnector.getConnection();
-        queries = QueryUtil.generateQueries(clazz);
-        mapper = new ObjectMapper(clazz);
+        queries = QueryUtil.generateQueries(o);
+        mapper = new ObjectMapper(o.getClass());
     }
 
     @Override

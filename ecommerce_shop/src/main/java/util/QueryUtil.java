@@ -10,15 +10,15 @@ import java.util.Map;
 
 public class QueryUtil {
 
-    public static Map<String, String> generateQueries(Class<?> clazz) {
-        return QueryUtil.queryBuilder(clazz);
+    public static Map<String, String> generateQueries(Object o) {
+        return QueryUtil.queryBuilder(o);
     }
 
-    private static Map<String, String> queryBuilder(Class<?> clazz) {
+    private static Map<String, String> queryBuilder(Object o) {
         Map<String, String> map = new LinkedHashMap<>();
         String[] result = new String[0];
         try {
-            result = getDataFromClazz(clazz);
+            result = getDataFromClazz(o);
         } catch (IllegalAccessException e) {
             //
         }
@@ -37,13 +37,8 @@ public class QueryUtil {
     }
 
 
-    private static String[] getDataFromClazz(Class<?> clazz) throws IllegalAccessException {
-        Object object = null;
-        try {
-            object = clazz.getConstructor().newInstance();
-        } catch (InstantiationException | InvocationTargetException | NoSuchMethodException e) {
-            //
-        }
+    private static String[] getDataFromClazz(Object object) throws IllegalAccessException {
+        Class<?> clazz = object.getClass();
         String tableName = clazz.getAnnotation(Table.class).name();
         Field[] localFields = clazz.getDeclaredFields();
         Map<String, Object> fields = new LinkedHashMap<>();

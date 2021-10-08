@@ -10,8 +10,8 @@ import java.util.List;
 public class BucketServiceImpl implements BucketService {
     private final GenericDao<Bucket, Long> dao;
 
-    public BucketServiceImpl() {
-        dao = new AbstractDao<>(Bucket.class);
+    public BucketServiceImpl(Bucket bucket) {
+        dao = new AbstractDao<>(bucket);
     }
 
     @Override
