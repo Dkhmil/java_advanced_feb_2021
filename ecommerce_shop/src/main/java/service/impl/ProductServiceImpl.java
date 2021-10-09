@@ -10,8 +10,8 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     private final GenericDao<Product, Long> dao;
 
-    public ProductServiceImpl(Product product) {
-        dao = new AbstractDao<>(product);
+    public ProductServiceImpl() {
+        dao = new AbstractDao<>(Product.class);
     }
 
     @Override

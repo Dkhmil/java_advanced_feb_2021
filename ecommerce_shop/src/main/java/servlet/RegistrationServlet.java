@@ -24,7 +24,7 @@ public class RegistrationServlet extends HttpServlet {
         String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
         User user = new User(email, password, firstName, lastName, Role.USER);
-        service = new UserServiceImpl(user);
+        service = new UserServiceImpl();
         service.create(user);
     }
 }

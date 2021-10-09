@@ -10,15 +10,15 @@ import java.util.Map;
 
 public class QueryUtil {
 
-    public static Map<String, String> generateQueries(Object o) {
-        return QueryUtil.queryBuilder(o);
+    public static Map<String, String> generateQueries(Class<?> clazz) {
+        return QueryUtil.queryBuilder(clazz);
     }
 
-    private static Map<String, String> queryBuilder(Object o) {
+    private static Map<String, String> queryBuilder(Class<?> clazz) {
         Map<String, String> map = new LinkedHashMap<>();
         String[] result = new String[0];
         try {
-            result = getDataFromClazz(o);
+            result = getDataFromClazz(clazz);
         } catch (IllegalAccessException e) {
             //
         }
@@ -37,8 +37,17 @@ public class QueryUtil {
     }
 
 
-    private static String[] getDataFromClazz(Object object) throws IllegalAccessException {
-        Class<?> clazz = object.getClass();
+    private static String[] getDataFromClazz(Class<?> clazz) throws IllegalAccessException {
+        Object object = null;
+        try {
+            object = clazz.getConstructor().newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
         String tableName = clazz.getAnnotation(Table.class).name();
         Field[] localFields = clazz.getDeclaredFields();
         Map<String, Object> fields = new LinkedHashMap<>();
@@ -67,7 +76,7 @@ public class QueryUtil {
         }
         columns = columns.deleteCharAt(columns.length() - 1);
         for (Object value : fields.values()) {
-            values.append("'" + value + "'");
+            values.append("" + '?' + "");
             if (values.length() >= 1) {
                 values.append(",");
             }
@@ -75,8 +84,8 @@ public class QueryUtil {
         values = values.deleteCharAt(values.length() - 1);
 
         for (Map.Entry<String, Object> entity : fields.entrySet()) {
-            update.append(entity.getKey() + " = '");
-            update.append(entity.getValue() + "',");
+            update.append(entity.getKey() + " = ");
+            update.append('?' + ",");
         }
         update = update.deleteCharAt(update.length() - 1);
 

@@ -10,8 +10,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final GenericDao<User, Long> dao;
 
-    public UserServiceImpl(User user) {
-        dao = new AbstractDao<>(user);
+    public UserServiceImpl() {
+        dao = new AbstractDao<>(User.class);
     }
 
     @Override
