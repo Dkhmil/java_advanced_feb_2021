@@ -22,15 +22,17 @@ public class ObjectMapper {
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
         Map<String, Field> fields = new HashMap<>();
         Object instance;
-        for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
-            fromRs.put(resultSetMetaData.getColumnName(i), resultSet.getObject(i));
-        }
-        List<Field> fieldList = Arrays.asList(clazz.getDeclaredFields());
-        for (Field field : fieldList) {
-            Column col = field.getAnnotation(Column.class);
-            if (col != null) {
-                field.setAccessible(true);
-                fields.put(col.name(), field);
+        if (resultSet.next()) {
+            for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
+                fromRs.put(resultSetMetaData.getColumnName(i), resultSet.getObject(i));
+            }
+            List<Field> fieldList = Arrays.asList(clazz.getDeclaredFields());
+            for (Field field : fieldList) {
+                Column col = field.getAnnotation(Column.class);
+                if (col != null) {
+                    field.setAccessible(true);
+                    fields.put(col.name(), field);
+                }
             }
         }
         try {

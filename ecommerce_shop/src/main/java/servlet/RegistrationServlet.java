@@ -1,7 +1,5 @@
 package servlet;
 
-import model.Role;
-import model.User;
 import service.UserService;
 import service.impl.UserServiceImpl;
 
@@ -23,8 +21,8 @@ public class RegistrationServlet extends HttpServlet {
         String password = req.getParameter("password");
         String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
-        User user = new User(email, password, firstName, lastName, Role.USER);
+       // User user = new User(email, password, firstName, lastName, Role.USER);
         service = new UserServiceImpl();
-        service.create(user);
+        service.create(null);
     }
 }

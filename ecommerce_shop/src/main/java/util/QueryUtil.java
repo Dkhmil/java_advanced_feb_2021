@@ -6,7 +6,10 @@ import dao.annotation.Table;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class QueryUtil {
 
@@ -22,10 +25,10 @@ public class QueryUtil {
         } catch (IllegalAccessException e) {
             //
         }
-        String read = "SELECT " + result[0] + " FROM " + result[2] + " WHERE ID = ?";
+        String read = "SELECT " + result[0] + " FROM " + result[2] + " WHERE " + result[0].substring( 0, result[0].indexOf(",")) + " = ?";
         String create = "INSERT INTO " + result[2] + "(" + result[0] + ") VALUES(" + result[1] + ");";
         String update = "UPDATE " + result[2] + " SET " + result[3] + " WHERE ID =" + result[3].substring(5, result[3].indexOf(","));
-        String delete = "DELETE FROM " + result[2] + " WHERE ID = ?";
+        String delete = "DELETE FROM " + result[2] + " WHERE " +  result[0].substring( 0, result[0].indexOf(","))  +  " = ?";
         String findAll = "SELECT " + result[0] + " FROM " + result[2] + ";";
 
         map.put("read", read);
@@ -95,5 +98,24 @@ public class QueryUtil {
         result[2] = tableName;
         result[3] = update.toString();
         return result;
+    }
+
+    public static <T> List<String> getListOfValues(T t) {
+        StringBuilder result = new StringBuilder();
+        Field f;
+        Field[] fields;
+        try {
+            fields = t.getClass().getDeclaredFields();
+            for (Field field : fields) {
+                f = field;
+                f.setAccessible(true);
+                result.append(f.get(t).toString()).append(",");
+            }
+        } catch (Exception ignored) {
+        }
+        return Stream.of
+                        (result.toString().split(",", -1))
+                .filter(s -> !s.isBlank())
+                .collect(Collectors.toList());
     }
 }

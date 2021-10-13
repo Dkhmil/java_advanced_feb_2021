@@ -4,13 +4,15 @@ import util.MySQLConnector;
 import util.ObjectMapper;
 import util.QueryUtil;
 
-import java.lang.reflect.Field;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static util.QueryUtil.getListOfValues;
 
 
 public class AbstractDao<T, ID> implements GenericDao<T, ID> {
@@ -18,46 +20,28 @@ public class AbstractDao<T, ID> implements GenericDao<T, ID> {
     private final Connection connection;
     private final Map<String, String> queries;
     private final ObjectMapper mapper;
+    private List<String> values;
 
     public AbstractDao(Class<?> clazz) {
         this.connection = MySQLConnector.getConnection();
-        queries = QueryUtil.generateQueries(clazz);
-        mapper = new ObjectMapper(clazz);
+        this.queries = QueryUtil.generateQueries(clazz);
+        this.mapper = new ObjectMapper(clazz);
     }
 
     @Override
     public T create(T t) {
+        values = getListOfValues(t);
         String createQuery = queries.get("create");
-        List<String> vaules = getListOfValues(t);
         try (PreparedStatement statement
                      = connection.prepareStatement(createQuery)) {
-            for (int i = 0; i < vaules.size(); i++) {
-                statement.setObject(i + 1, vaules.get(i));
+            for (int i = 0; i < values.size(); i++) {
+                statement.setObject(i + 1, values.get(i));
             }
             statement.execute();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+           //
         }
         return t;
-    }
-
-    public List<String> getListOfValues(T t) {
-        StringBuilder result = new StringBuilder();
-        Field f;
-        Field[] fields;
-        try {
-            fields = t.getClass().getDeclaredFields();
-            for (Field field : fields) {
-                f = field;
-                f.setAccessible(true);
-                result.append(f.get(t).toString()).append(",");
-            }
-        } catch (Exception ignored) {
-        }
-        return Stream.of
-                        (result.toString().split(",", -1))
-                .filter(s -> !s.isBlank())
-                .collect(Collectors.toList());
     }
 
     @Override
@@ -68,7 +52,7 @@ public class AbstractDao<T, ID> implements GenericDao<T, ID> {
             statement.setObject(1, id);
             return mapper.mapResultSetToObject(statement.executeQuery());
         } catch (SQLException throwables) {
-            // add logger here
+            throwables.printStackTrace();
         }
         return null;
     }
