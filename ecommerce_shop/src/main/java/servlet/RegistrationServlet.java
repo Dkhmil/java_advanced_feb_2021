@@ -24,7 +24,7 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
-        if (Objects.isNull(service.readByEmail(email))) {
+        if (Objects.isNull(service.readByEmail(email).getEmail())) {
             String password = req.getParameter("password");
             String firstName = req.getParameter("firstName");
             String lastName = req.getParameter("lastName");
