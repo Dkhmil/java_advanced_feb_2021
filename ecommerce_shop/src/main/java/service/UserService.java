@@ -10,6 +10,8 @@ public interface UserService {
 
     User read(Long id);
 
+    User readByEmail(String email);
+
     User update(User bucket);
 
     void delete(Long id);

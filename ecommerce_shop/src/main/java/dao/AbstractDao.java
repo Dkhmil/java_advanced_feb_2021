@@ -17,9 +17,9 @@ import static util.QueryUtil.getListOfValues;
 
 public class AbstractDao<T, ID> implements GenericDao<T, ID> {
 
-    private final Connection connection;
+    protected final Connection connection;
     private final Map<String, String> queries;
-    private final ObjectMapper mapper;
+    protected final ObjectMapper mapper;
     private List<String> values;
 
     public AbstractDao(Class<?> clazz) {

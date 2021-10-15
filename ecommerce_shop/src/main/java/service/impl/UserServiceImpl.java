@@ -1,17 +1,16 @@
 package service.impl;
 
-import dao.AbstractDao;
-import dao.GenericDao;
+import dao.UserDaoImpl;
 import model.User;
 import service.UserService;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private final GenericDao<User, Long> dao;
+    private final UserDaoImpl dao;
 
     public UserServiceImpl() {
-        dao = new AbstractDao<>(User.class);
+        dao = new UserDaoImpl(User.class);
     }
 
     @Override
@@ -25,17 +24,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User readByEmail(String email) {
+        return dao.findUserByEmail(email);
+    }
+
+    @Override
     public User update(User bucket) {
         return dao.update(bucket);
     }
 
     @Override
     public void delete(Long id) {
-       dao.delete(id);
+        dao.delete(id);
     }
 
     @Override
     public List<User> readAll() {
-        return null;
+        return dao.readAll();
     }
+
+
 }

@@ -12,10 +12,9 @@ public class App {
                 "Vasylenko",
                 "USER");
 
-      //  userService.create(user);
-        User readUser = userService.read(955406l);
-
-        userService.update(user);
+        //  userService.create(user);
+        User findUser = userService.readByEmail("eamil@gmail.com");
+        System.out.println(findUser);
 
 
     }
