@@ -13,10 +13,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Objects;
 
-@WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
 
-    private static UserService service;
+    private static final UserService service;
 
     static {
         service = new UserServiceImpl();
