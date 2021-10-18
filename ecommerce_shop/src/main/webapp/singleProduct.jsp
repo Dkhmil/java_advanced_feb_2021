@@ -1,6 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Registration/Login</title>
+    <title>Single product</title>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -11,25 +15,19 @@
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-<div class="login-page">
-    <div class="form">
-        <form class="register-form">
-            <input class="firstName" type="text" placeholder="First Name"/>
-            <input class="lastName" type="text" placeholder="Last Name"/>
-            <input class="email" type="email" placeholder="Email Address"/>
-            <input class="password" type="password" placeholder="Password"/>
-            <input class="confirmPassword" type="password" placeholder="Confirm Password"/>
-            <button id="register">create</button>
-            <p class="message">Already registered? <a href="#">Sign In</a></p>
-        </form>
-        <form class="login-form">
-            <input class="email" type="email" placeholder="Email Address"/>
-            <input class="password" type="password" placeholder="Password"/>
-            <button id="login">login</button>
-            <p class="message">Not registered? <a href="#">Create an account</a></p>
-        </form>
+<jsp:include page="header.jsp"></jsp:include>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Product name : ${product.name}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Product price : ${product.price}</h6>
+        <p class="card-text">Product description : ${product.description}</p>
+        <button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#buyProductModal" id="buy" product-id= ${product.id}>Buy product
+        </button>
     </div>
 </div>
+
 <jsp:include page="footer.jsp"></jsp:include>
 
 <!-- Optional JavaScript -->
@@ -47,7 +45,7 @@
         crossorigin="anonymous"></script>
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-<script src="js/main.js"></script>
+<script src="js/buyProduct.js"></script>
 </body>
 </html>
+

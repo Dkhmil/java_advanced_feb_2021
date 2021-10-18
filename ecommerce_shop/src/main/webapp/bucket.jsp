@@ -1,6 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Registration/Login</title>
+    <title>Bucket</title>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -9,27 +13,17 @@
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/bucket.css">
 </head>
 <body>
-<div class="login-page">
-    <div class="form">
-        <form class="register-form">
-            <input class="firstName" type="text" placeholder="First Name"/>
-            <input class="lastName" type="text" placeholder="Last Name"/>
-            <input class="email" type="email" placeholder="Email Address"/>
-            <input class="password" type="password" placeholder="Password"/>
-            <input class="confirmPassword" type="password" placeholder="Confirm Password"/>
-            <button id="register">create</button>
-            <p class="message">Already registered? <a href="#">Sign In</a></p>
-        </form>
-        <form class="login-form">
-            <input class="email" type="email" placeholder="Email Address"/>
-            <input class="password" type="password" placeholder="Password"/>
-            <button id="login">login</button>
-            <p class="message">Not registered? <a href="#">Create an account</a></p>
-        </form>
-    </div>
-</div>
+
+<jsp:include page="header.jsp"></jsp:include>
+
+<h3>My bucket : </h3>
+<input type="text" id="myInput" onkeyup="searchFunction()"
+       placeholder="Search for names.." title="Type in a name">
+<table id="bucketTable"></table>
+
 <jsp:include page="footer.jsp"></jsp:include>
 
 <!-- Optional JavaScript -->
@@ -47,7 +41,6 @@
         crossorigin="anonymous"></script>
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-<script src="js/main.js"></script>
+<script src="js/bucket.js"></script>
 </body>
 </html>

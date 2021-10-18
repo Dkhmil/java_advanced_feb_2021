@@ -13,9 +13,9 @@ import java.util.Objects;
 
 public class BucketProductServiceImpl implements BucketProductService {
 
-    private BucketProductDao bucketProductDao;
-    private BucketService bucketService;
-    private ProductService productService;
+    private final BucketProductDao bucketProductDao;
+    private final BucketService bucketService;
+    private final ProductService productService;
 
     public BucketProductServiceImpl() {
         bucketProductDao = new BucketProductDaoImpl();
