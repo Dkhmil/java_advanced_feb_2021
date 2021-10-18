@@ -25,4 +25,9 @@ public class Bucket {
                 .getAsInt();
         this.createdDate = createdDate;
     }
+
+    public Bucket(int id) {
+        this.id = id;
+        this.createdDate = LocalDateTime.now();
+    }
 }
