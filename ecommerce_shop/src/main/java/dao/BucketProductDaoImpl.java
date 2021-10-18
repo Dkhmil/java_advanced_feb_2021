@@ -46,7 +46,7 @@ public class BucketProductDaoImpl implements BucketProductDao {
 
     @Override
     public List<ProductResponse> getProductsByBucketId(int bucketId) {
-        ResultSet resultSet = null;
+        ResultSet resultSet;
         List<ProductResponse> products = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(GET_ALL_PRODUCTS_FROM_BUCKET)) {
             statement.setInt(1, bucketId);
@@ -106,8 +106,8 @@ public class BucketProductDaoImpl implements BucketProductDao {
     }
 
     private static ProductResponse getProductFromResult(ResultSet resultSet) throws SQLException {
-        return new ProductResponse(resultSet.getInt("id"), resultSet.getString("name"),
-                resultSet.getString("description"), resultSet.getDouble("price"),
-                resultSet.getInt("product_count"));
+        return new ProductResponse(resultSet.getInt("PRODUCT_ID"), resultSet.getString("PRODUCT_NAME"),
+                resultSet.getString("PRODUCT_DESCRIPTION"), resultSet.getDouble("PRODUCT_PRICE"),
+                resultSet.getInt("PRODUCT_COUNT"));
     }
 }

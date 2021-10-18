@@ -14,7 +14,7 @@ $(document).ready(function () {
         let confirmPassword = $("form.register-form input.confirmPassword").val();
         if (firstName === "" || lastName === "" || email === "" || password === "" || confirmPassword === "") {
             alert("Please fill all fields!!!");
-        } else if (password.length < 5) {
+        } else if (password.length < 2) {
             alert("Password must contains more than 5 characters");
         } else if (!(password.match(confirmPassword))) {
             alert("Your passwords don`t match! Try again!")
@@ -26,7 +26,7 @@ $(document).ready(function () {
                 password: password
             };
             $.post("registration", userRegistration, function (data) {
-                if (data == "Success") {
+                if (data === "Success") {
                     $("form")[0].reset();
                 }
             });

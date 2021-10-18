@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="login-page">
-    <div class="form">
+    <div class="form">0
         <form class="register-form">
             <input class="firstName" type="text" placeholder="First Name"/>
             <input class="lastName" type="text" placeholder="Last Name"/>
