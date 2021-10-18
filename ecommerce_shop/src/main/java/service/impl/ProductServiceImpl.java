@@ -6,6 +6,7 @@ import model.Product;
 import service.ProductService;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ProductServiceImpl implements ProductService {
     private final GenericDao<Product, Long> dao;
@@ -37,5 +38,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> readAll() {
         return dao.readAll();
+    }
+
+    @Override
+    public boolean isExist(long productId) {
+        return !Objects.isNull(dao.read(productId));
     }
 }

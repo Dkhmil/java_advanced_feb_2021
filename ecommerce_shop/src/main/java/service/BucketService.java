@@ -14,4 +14,6 @@ public interface BucketService {
     void delete(Long id);
 
     List<Bucket> readAll();
+
+    boolean isExist(long bucketId);
 }

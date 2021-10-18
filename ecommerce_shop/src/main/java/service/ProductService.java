@@ -14,4 +14,6 @@ public interface ProductService {
     void delete(Long id);
 
     List<Product> readAll();
+
+    boolean isExist(long productId);
 }

@@ -6,6 +6,7 @@ import model.Bucket;
 import service.BucketService;
 
 import java.util.List;
+import java.util.Objects;
 
 public class BucketServiceImpl implements BucketService {
     private final GenericDao<Bucket, Long> dao;
@@ -37,5 +38,10 @@ public class BucketServiceImpl implements BucketService {
     @Override
     public List<Bucket> readAll() {
         return dao.readAll();
+    }
+
+    @Override
+    public boolean isExist(long bucketId) {
+        return !Objects.isNull(dao.read(bucketId));
     }
 }
