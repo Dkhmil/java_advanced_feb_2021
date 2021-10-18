@@ -1,14 +1,16 @@
 package service;
 
-import model.Product;
+import model.response.ProductResponse;
 
 import java.util.List;
 
 public interface BucketProductService {
 
-    void addProductToBucket(long bucketId, long productId);
+    List<ProductResponse> getProductsByBucketId(int bucketId);
 
-    void removeProductFromBucket(long bucketId, long productId, boolean all);
+    void addProductToBucket(int bucketId, int productId);
 
-    List<Product> getProductByBucketId(int bucketId);
+    void removeProductFromBucket(int bucketId, int productId, boolean all);
+
+    boolean isExists(int bucketId, int productId);
 }

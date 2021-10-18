@@ -1,7 +1,7 @@
 package dao;
 
 import model.BucketProduct;
-import model.Product;
+import model.response.ProductResponse;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public interface BucketProductDao {
 
     BucketProduct getBucketProductByIds(int bucketId, int productId);
 
-    List<Product> getProductsByBucketId(int bucketId);
+    List<ProductResponse> getProductsByBucketId(int bucketId);
 
     void addProductToBucket(BucketProduct bucketProduct);
 
