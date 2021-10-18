@@ -56,8 +56,28 @@ public class BucketController extends HttpServlet {
         int bucketId = user.getId();
         if (Objects.isNull(bucketService.read((long) bucketId))) {
             Bucket bucket = new Bucket(bucketId);
-
         }
+        bucketProductService.addProductToBucket(bucketId, productId);
+
+        resp.setContentType("plain/text");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write("Success");
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int productId = Integer.parseInt(req.getParameter("productId"));
+        HttpSession session = req.getSession();
+        String email = session.getAttribute("userEmail").toString();
+        User user = userService.readByEmail(email);
+        int bucketId = user.getId();
+        boolean allParameter = Boolean.parseBoolean(req.getParameter("all"));
+
+        bucketProductService.removeProductFromBucket(bucketId, productId, allParameter);
+
+        resp.setContentType("plain/text");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write("Success");
 
     }
 }
