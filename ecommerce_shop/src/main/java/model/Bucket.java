@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Random;
 
@@ -17,17 +18,17 @@ public class Bucket {
     @Column(name = "BUCKET_ID")
     private int id;
     @Column(name = "CREATED_DATE")
-    private LocalDateTime createdDate;
+    private Timestamp createdDate;
 
     public Bucket(LocalDateTime createdDate) {
         this.id = new Random().ints(1, 1000000)
                 .findFirst()
                 .getAsInt();
-        this.createdDate = createdDate;
+        this.createdDate = new Timestamp(System.currentTimeMillis());
     }
 
     public Bucket(int id) {
         this.id = id;
-        this.createdDate = LocalDateTime.now();
+        this.createdDate = new Timestamp(System.currentTimeMillis());
     }
 }

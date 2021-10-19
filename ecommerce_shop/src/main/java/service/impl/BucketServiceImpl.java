@@ -42,6 +42,6 @@ public class BucketServiceImpl implements BucketService {
 
     @Override
     public boolean isExist(long bucketId) {
-        return !Objects.isNull(dao.read(bucketId));
+        return dao.read(bucketId).getId() != 0;
     }
 }

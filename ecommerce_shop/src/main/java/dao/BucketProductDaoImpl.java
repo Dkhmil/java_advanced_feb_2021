@@ -17,7 +17,7 @@ public class BucketProductDaoImpl implements BucketProductDao {
     public static final String ADD_PRODUCT_TO_BUCKET = "INSERT INTO bucket_product (BUCKET_ID, PRODUCT_ID, PRODUCT_COUNT) VALUES (?, ?, ?)";
     public static final String REMOVE_PRODUCT_FROM_BUCKET = "DELETE FROM bucket_product WHERE BUCKET_ID = ? AND PRODUCT_ID = ?";
     public static final String GET_ALL_PRODUCTS_FROM_BUCKET = "SELECT product.PRODUCT_ID, product.PRODUCT_NAME, product.PRODUCT_DESCRIPTION, product.PRODUCT_PRICE, bucket_product.PRODUCT_COUNT " +
-            "FROM product INNER JOIN bucket_product ON product.id = bucket_product.PRODUCT_ID WHERE bucket_product.BUCKET_ID = ?";
+            "FROM product INNER JOIN bucket_product ON product.PRODUCT_ID = bucket_product.PRODUCT_ID WHERE bucket_product.BUCKET_ID = ?";
     public static final String UPDATE_PRODUCT_COUNT = "UPDATE bucket_product SET PRODUCT_COUNT = ? WHERE (BUCKET_ID = ?) and (PRODUCT_ID = ?)";
     private final Connection connection;
 

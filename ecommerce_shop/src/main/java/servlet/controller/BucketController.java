@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 @WebServlet("/bucketInfo")
 public class BucketController extends HttpServlet {
@@ -39,8 +38,11 @@ public class BucketController extends HttpServlet {
         String email = session.getAttribute("userEmail").toString();
         User user = userService.readByEmail(email);
         int bucketId = user.getId();
+        if (bucketService.read((long) bucketId).getId() == 0) {
+            Bucket bucket = new Bucket(bucketId);
+            bucketService.create(bucket);
+        }
         List<ProductResponse> productResponseList = bucketProductService.getProductsByBucketId(bucketId);
-
         String json = new Gson().toJson(productResponseList);
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
@@ -54,11 +56,7 @@ public class BucketController extends HttpServlet {
         String email = session.getAttribute("userEmail").toString();
         User user = userService.readByEmail(email);
         int bucketId = user.getId();
-        if (Objects.isNull(bucketService.read((long) bucketId))) {
-            Bucket bucket = new Bucket(bucketId);
-        }
         bucketProductService.addProductToBucket(bucketId, productId);
-
         resp.setContentType("plain/text");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write("Success");
@@ -72,12 +70,9 @@ public class BucketController extends HttpServlet {
         User user = userService.readByEmail(email);
         int bucketId = user.getId();
         boolean allParameter = Boolean.parseBoolean(req.getParameter("all"));
-
         bucketProductService.removeProductFromBucket(bucketId, productId, allParameter);
-
         resp.setContentType("plain/text");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write("Success");
-
     }
 }

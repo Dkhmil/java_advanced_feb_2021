@@ -23,7 +23,7 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         String email = req.getParameter("email");
-        if (Objects.isNull(service.readByEmail(email))) {
+        if (Objects.isNull(service.readByEmail(email).getEmail())) {
             String firstName = req.getParameter("firstName");
             String lastName = req.getParameter("lastName");
             String password = req.getParameter("password");
@@ -35,6 +35,6 @@ public class RegistrationServlet extends HttpServlet {
         }
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write("Success");
+        resp.sendRedirect(req.getContextPath());
     }
 }

@@ -54,7 +54,7 @@ $(document).ready(function () {
                     for (let i = 0; i < url.length - 1; i++) {
                         finalUrl += url[i] + "/";
                     }
-                    finalUrl += data.destinationUrl;
+                    finalUrl += "cabinet.jsp";
                     window.location.href = finalUrl;
                 }
                 $("form")[1].reset();
