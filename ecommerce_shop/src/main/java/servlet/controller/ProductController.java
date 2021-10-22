@@ -20,6 +20,8 @@ public class ProductController extends HttpServlet {
         this.service = new ProductServiceImpl();
     }
 
+    // mine comment
+    // mine comment
     // цей метод приймає id продукта
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,7 +31,6 @@ public class ProductController extends HttpServlet {
         req.getRequestDispatcher("singleProduct.jsp").forward(req, resp);
     }
 
-    // hello
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
