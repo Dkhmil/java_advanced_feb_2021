@@ -20,6 +20,8 @@ public class ProductController extends HttpServlet {
         this.service = new ProductServiceImpl();
     }
 
+    // mine comment
+    // mine comment
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long id = (long) Integer.parseInt(req.getParameter("id"));
