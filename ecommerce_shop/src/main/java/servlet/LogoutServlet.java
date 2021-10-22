@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Objects;
 
+// logout - це коли користувач хоче вийти із програми (завершити сесію)
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
 

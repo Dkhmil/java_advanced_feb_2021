@@ -10,6 +10,7 @@ import java.util.List;
 
 public class FilterService {
 
+    // цей метод фільтрує http запит (перевіряємо: user чи admin)
     public void doFilterValidation(HttpServletRequest servletRequest, HttpServletResponse servletResponse,
                                    FilterChain filterChain, List<String> allowedRoles) throws ServletException, IOException {
         HttpSession session = servletRequest.getSession();
