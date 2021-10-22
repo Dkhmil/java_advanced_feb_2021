@@ -22,6 +22,7 @@ public class ProductController extends HttpServlet {
 
     // mine comment
     // mine comment
+    // цей метод приймає id продукта
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long id = (long) Integer.parseInt(req.getParameter("id"));

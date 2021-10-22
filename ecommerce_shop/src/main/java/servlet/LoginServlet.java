@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Objects;
 
+// login - користувач логіниться по паролю
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     private static UserService service;
