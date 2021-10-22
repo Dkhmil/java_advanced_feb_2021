@@ -2,28 +2,28 @@ package petro;
 
 public class Petro {
 
-    public int n;
+    public int nameVar;
     public String txt;
 
     public Petro(int n, String txt) {
-        this.n = n;
+        this.nameVar = n;
         this.txt = txt;
     }
 
     @Override
     public String toString() {
         return "Petro{" +
-                "n=" + n +
+                "n=" + nameVar +
                 ", txt='" + txt + '\'' +
                 '}';
     }
 
     public int getN() {
-        return n;
+        return nameVar;
     }
 
     public void setN(int n) {
-        this.n = n;
+        this.nameVar = n;
     }
 
     public String getTxt() {
