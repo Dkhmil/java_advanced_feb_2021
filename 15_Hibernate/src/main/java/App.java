@@ -6,6 +6,7 @@ public class App {
 
     public static void main(String[] args) {
         PersonService service = new PersonServiceImpl();
-        service.create(new Person("Ivan", "Ivanenko", 30));
+         service.create(new Person("Ivan", "Ivanenko", 30));
+        System.out.println(service.read(1));
     }
 }

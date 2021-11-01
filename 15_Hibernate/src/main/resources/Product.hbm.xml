@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="many_to_many.Product" table="PRODUCT">
+        <id name="id" type="int" column="PRODUCT_ID">
+            <generator class="increment"/>
+        </id>
+        <property name="name" column="PRODUCT_NAME" type="java.lang.String"/>
+        <property name="price" column="PRODUCT_PRICE" type="double"/>
+
+        <set name="buckets" table="BUCKET_PRODUCT" inverse="true" fetch="select" lazy="true">
+            <key>
+                <column name="PRODUCT_ID" not-null="true"/>
+            </key>
+            <many-to-many entity-name="many_to_many.Bucket">
+                <column name="BUCKET_ID" not-null="true"/>
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
