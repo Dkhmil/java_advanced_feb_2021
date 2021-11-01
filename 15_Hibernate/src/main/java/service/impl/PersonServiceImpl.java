@@ -10,10 +10,10 @@ import java.util.List;
 
 public class PersonServiceImpl implements PersonService {
 
-    private Session session;
-    private Transaction transaction;
+    private final Session session;
+    private final Transaction transaction;
 
-    public PersonServiceImpl(Session session, Transaction transaction) {
+    public PersonServiceImpl() {
         this.session = SessionFactoryUtil.getSession();
         this.transaction = session.beginTransaction();
     }
