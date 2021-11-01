@@ -5,11 +5,11 @@
 
 <hibernate-mapping>
     <class name="model.Person" table="PERSON">
-        <id name="id" type="int" column="PERSON_ID">
+        <id name="id" type="long" column="PERSON_ID">
             <generator class="increment"/>
         </id>
         <property name="firstName" column="FIRST_NAME" type="java.lang.String"/>
-        <property name="lastName" column="FIRST_NAME" type="java.lang.String"/>
-        <property name="age" column="AGE" type="java.lang.String"/>
+        <property name="lastName" column="LAST_NAME" type="java.lang.String"/>
+        <property name="age" column="AGE" type="int"/>
     </class>
 </hibernate-mapping>

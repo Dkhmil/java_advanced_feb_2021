@@ -18,16 +18,18 @@ public class PersonServiceImpl implements PersonService {
         this.transaction = session.beginTransaction();
     }
 
-    public Person read(int id) {
+    public Person read(long id) {
         return session.get(Person.class, id);
     }
+
 
     public List<Person> readAll() {
         return session.createCriteria(Person.class).list();
     }
 
     public void create(Person person) {
-        session.persist(person);
+       session.persist(person);
+     //   session.merge(person);
         transaction.commit();
     }
 

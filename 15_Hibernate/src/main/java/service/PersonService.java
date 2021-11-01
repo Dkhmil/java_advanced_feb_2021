@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PersonService {
 
-    Person read(int id);
+    Person read(long id);
 
     List<Person> readAll();
 
