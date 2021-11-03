@@ -7,6 +7,13 @@ import util.SessionFactoryUtil;
 public class App {
 
     public static void main(String[] args) {
+        manyToMany();
+     //   oneToMany();
+      //  oneToOne();
+
+    }
+
+    private static void manyToMany() {
         Session session = SessionFactoryUtil.getSession();
         Transaction transaction = session.getTransaction();
         transaction.begin();
@@ -31,6 +38,5 @@ public class App {
         session.save(team2);
         transaction.commit();
         session.close();
-
     }
 }
