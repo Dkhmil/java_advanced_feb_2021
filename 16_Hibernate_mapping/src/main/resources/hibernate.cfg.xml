@@ -12,8 +12,14 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="hbm2ddl.auto">update</property>
 
-        <mapping resource="Person.hbm.xml" />
-        <mapping resource="Product.hbm.xml" />
-        <mapping resource="Bucket.hbm.xml" />
+        <mapping class="many_to_many.Team"/>
+        <mapping class="many_to_many.User"/>
+
+        <mapping class="one_to_many.Cart"/>
+        <mapping class="one_to_many.Item"/>
+
+        <mapping class="one_to_one.Customer"/>
+        <mapping class="one_to_one.FinancialOperation"/>
+
     </session-factory>
 </hibernate-configuration>
