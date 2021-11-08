@@ -1,17 +1,21 @@
 package model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class Shop {
     private int id;
     private String name;
     private double square;
     private int maxPeople;
+
+    public Shop(int id, String name, double square, int maxPeople) {
+        this.id = id;
+        this.name = name;
+        this.square = square;
+        this.maxPeople = maxPeople;
+    }
 
     public int getId() {
         return id;
@@ -20,6 +24,7 @@ public class Shop {
     public void setId(int id) {
         this.id = id;
     }
+
 
     public String getName() {
         return name;
