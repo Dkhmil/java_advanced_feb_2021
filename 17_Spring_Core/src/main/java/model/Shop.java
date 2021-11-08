@@ -17,6 +17,10 @@ public class Shop {
         this.maxPeople = maxPeople;
     }
 
+    public Shop() {
+
+    }
+
     public int getId() {
         return id;
     }
