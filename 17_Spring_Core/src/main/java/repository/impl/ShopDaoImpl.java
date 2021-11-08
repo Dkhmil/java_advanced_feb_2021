@@ -5,6 +5,7 @@ import repository.ShopDao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ShopDaoImpl implements ShopDao {
 
@@ -33,7 +34,7 @@ public class ShopDaoImpl implements ShopDao {
         }
     }
 
-    public void update(Shop shop, String property, String newValue) {
+    public void update(Shop shop) {
         if (shopList.contains(shop)) {
             Shop shopToUpdate = read(shop.getId());
             shopToUpdate.setName(shop.getName());
@@ -43,8 +44,9 @@ public class ShopDaoImpl implements ShopDao {
     }
 
     public void delete(int id) {
-        shopList.stream()
-                .filter(sh -> sh.getId() == id)
-                .forEach(shopList::remove);
+        Shop shopToDelete = read(id);
+        if (Objects.nonNull(shopToDelete)) {
+            shopList.remove(shopToDelete);
+        }
     }
 }

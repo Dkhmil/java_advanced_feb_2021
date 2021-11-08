@@ -10,7 +10,7 @@ public interface AbstractCrudOperations<T> {
 
     void create(T t);
 
-    void update(T t, String property, String newValue);
+    void update(T t);
 
     void delete(int id);
 }
