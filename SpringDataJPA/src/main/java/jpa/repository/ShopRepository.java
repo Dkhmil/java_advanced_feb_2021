@@ -12,5 +12,5 @@ public interface ShopRepository extends JpaRepository<Shop, Integer>, CrudReposi
 
     List<Shop> findByName(String name);
 
-    List<Shop> findMaxPeopleLessThanEqual(int maxPeople);
+    List<Shop> findByMaxPeopleLessThanEqual(int maxPeople);
 }

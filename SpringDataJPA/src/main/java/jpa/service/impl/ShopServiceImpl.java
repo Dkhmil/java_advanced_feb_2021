@@ -39,6 +39,6 @@ public class ShopServiceImpl implements ShopService {
     }
 
     public List<Shop> findMaxPeopleLessThanEqual(int maxPeople) {
-        return repository.findMaxPeopleLessThanEqual(maxPeople);
+        return repository.findByMaxPeopleLessThanEqual(maxPeople);
     }
 }
