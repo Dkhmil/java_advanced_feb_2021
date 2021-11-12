@@ -29,4 +29,36 @@ public class Shop {
 
     public Shop() {
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getSquare() {
+        return square;
+    }
+
+    public void setSquare(double square) {
+        this.square = square;
+    }
+
+    public int getMaxPeople() {
+        return maxPeople;
+    }
+
+    public void setMaxPeople(int maxPeople) {
+        this.maxPeople = maxPeople;
+    }
 }
