@@ -1,4 +1,4 @@
-package model.request;
+package upload.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

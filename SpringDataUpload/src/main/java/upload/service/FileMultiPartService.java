@@ -1,6 +1,6 @@
-package service;
+package upload.service;
 
-import model.request.FileMultipart;
+import upload.model.request.FileMultipart;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;

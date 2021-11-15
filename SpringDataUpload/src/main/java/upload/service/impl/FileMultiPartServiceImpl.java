@@ -1,12 +1,12 @@
-package service.impl;
+package upload.service.impl;
 
-import model.request.FileMultipart;
+import upload.model.request.FileMultipart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-import repository.FileMultipartRepository;
-import service.FileMultiPartService;
+import upload.repository.FileMultipartRepository;
+import upload.service.FileMultiPartService;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

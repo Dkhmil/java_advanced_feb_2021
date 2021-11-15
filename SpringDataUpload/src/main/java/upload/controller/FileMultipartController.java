@@ -1,7 +1,7 @@
-package controller;
+package upload.controller;
 
-import model.request.FileMultipart;
-import model.response.MultipartUploadResponse;
+import upload.model.request.FileMultipart;
+import upload.model.response.MultipartUploadResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import service.FileMultiPartService;
+import upload.service.FileMultiPartService;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
