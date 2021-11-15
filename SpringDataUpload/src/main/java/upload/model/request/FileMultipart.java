@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class FileMultipart {
 
     @Id
-    @Column(name = "FILE_ID")
+    @Column(name = "FILE_ID", length = 64)
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
@@ -23,6 +23,7 @@ public class FileMultipart {
     private String fileName;
     @Column(name = "FILE_TYPE")
     private String fileType;
+    @Lob
     @Column(name = "DATA")
     private byte[] data;
 
