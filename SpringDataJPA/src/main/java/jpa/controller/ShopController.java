@@ -1,6 +1,9 @@
 package jpa.controller;
 
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import jpa.model.Shop;
 import jpa.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +16,21 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 import java.util.Objects;
 
+import static javax.servlet.http.HttpServletResponse.*;
+
 @RestController
 public class ShopController {
 
     @Autowired
     private ShopService shopService;
 
+    @ApiResponses(value = {@ApiResponse(code = SC_OK, message = "Ok"),
+            @ApiResponse(code = SC_BAD_REQUEST, message = "An unexpected error occurred"),
+            @ApiResponse(code = SC_NO_CONTENT, message = "No shops in database")
+    })
+    @ApiOperation(value = "Retrieves information about all shops",
+            response = Shop.class,
+            responseContainer = "List")
     @GetMapping("/shops")
     public ResponseEntity<List<Shop>> getAllShops() {
         List<Shop> shops = shopService.findAll();
@@ -28,6 +40,13 @@ public class ShopController {
         return new ResponseEntity<>(shops, HttpStatus.OK);
     }
 
+    @ApiResponses(value = {@ApiResponse(code = SC_OK, message = "Ok"),
+            @ApiResponse(code = SC_BAD_REQUEST, message = "An unexpected error occurred"),
+            @ApiResponse(code = SC_NO_CONTENT, message = "No shops in database"),
+    })
+    @ApiOperation(value = "Search for shops by name",
+            response = Shop.class,
+            responseContainer = "List")
     @GetMapping("/shops/by-name/{name}")
     public ResponseEntity<List<Shop>> getAllShopsByName(@PathVariable("name") String name) {
         List<Shop> shops = shopService.findByName(name);
@@ -37,6 +56,12 @@ public class ShopController {
         return new ResponseEntity<>(shops, HttpStatus.OK);
     }
 
+    @ApiResponses(value = {@ApiResponse(code = SC_OK, message = "Ok"),
+            @ApiResponse(code = SC_BAD_REQUEST, message = "An unexpected error occurred"),
+            @ApiResponse(code = SC_NO_CONTENT, message = "No shops in database"),
+    })
+    @ApiOperation(value = "Search for shop by id",
+            response = Shop.class)
     @GetMapping("/shops/{id}")
     public ResponseEntity<Shop> getAllShopsById(@PathVariable("id") int id) {
         Shop shop = shopService.findById(id);
@@ -46,6 +71,12 @@ public class ShopController {
         return new ResponseEntity<>(shop, HttpStatus.OK);
     }
 
+    @ApiResponses(value = {@ApiResponse(code = SC_OK, message = "Ok"),
+            @ApiResponse(code = SC_BAD_REQUEST, message = "An unexpected error occurred"),
+            @ApiResponse(code = SC_NO_CONTENT, message = "No shops in database"),
+            @ApiResponse(code = SC_INTERNAL_SERVER_ERROR, message = "Validation error occured. " +
+                    "Some fields are empty or inncorrect input")
+    })
     @PostMapping("/shops")
     public ResponseEntity<?> addNewShop(@RequestBody Shop shop, UriComponentsBuilder builder) {
         shopService.save(shop);

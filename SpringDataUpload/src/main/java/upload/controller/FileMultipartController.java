@@ -29,6 +29,7 @@ public class FileMultipartController {
         FileMultipart multipart = service.saveFile(file);
         String fileDownLoadUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
                 .path(multipart.getId()).toUriString();
+
         return new MultipartUploadResponse(multipart.getFileName(), fileDownLoadUrl, file.getContentType(), file.getSize());
     }
 

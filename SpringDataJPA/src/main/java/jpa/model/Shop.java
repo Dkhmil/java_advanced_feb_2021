@@ -3,6 +3,7 @@ package jpa.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Data
 @Entity
@@ -14,10 +15,15 @@ public class Shop {
     @Column(name = "shop_id")
     private int id;
     @Column(name = "shop_name")
+    @NotBlank
+    @Size(min = 5, max = 30, message = "incorrect length")
     private String name;
     @Column(name = "shop_square")
+    @Positive
     private double square;
     @Column(name = "max_num_people")
+    @Min(value = 1, message = "Max people should not be less than 1")
+    @Max(value = 1500, message = "Max people should not be less than 15000")
     private int maxPeople;
 
     public Shop(int id, String name, double square, int maxPeople) {
