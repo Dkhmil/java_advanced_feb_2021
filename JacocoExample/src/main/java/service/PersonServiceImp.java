@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 
 import java.util.List;
 
-@AllArgsConstructor
 public class PersonServiceImp implements PersonService {
 
     private List<Person> personList;
