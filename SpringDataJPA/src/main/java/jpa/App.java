@@ -3,8 +3,6 @@ package jpa;
 import jpa.model.Shop;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-import jpa.service.ShopService;
 
 @SpringBootApplication
 public class App {
